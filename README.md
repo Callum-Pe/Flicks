@@ -31,7 +31,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 
-![Walkthrough][video.gif]
+![Walkthrough](video.gif)
 
 ## Notes
 
