@@ -17,6 +17,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import codepath.com.flicks.models.Config;
 import codepath.com.flicks.models.Movie;
 import cz.msebera.android.httpclient.Header;
@@ -26,13 +29,14 @@ public class MovieListActiviity extends AppCompatActivity {
     public static final String API_BASE_URL = "https://api.themoviedb.org/3";
     public static final String API_KEY_PARAM = "api_key";
     public static final String TAG = "MovieListActivity";
+    @BindString(R.string.api_key)    String API_KEY;
     AsyncHttpClient client;
 
 
 
     ArrayList<Movie> movieList;
 
-    RecyclerView rvMovie;
+    @BindView(R.id.rvMovies) RecyclerView rvMovie;
     MovieAdapter adapter;
 
     Config config;
@@ -41,10 +45,10 @@ public class MovieListActiviity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list_activiity);
+        ButterKnife.bind(this);
         client = new AsyncHttpClient();
         movieList = new ArrayList<Movie>();
         adapter = new MovieAdapter(movieList);
-        rvMovie = (RecyclerView) findViewById(R.id.rvMovies);
         rvMovie.setLayoutManager(new LinearLayoutManager(this));
         rvMovie.setAdapter(adapter);
         getConfiguration();
@@ -55,7 +59,7 @@ public class MovieListActiviity extends AppCompatActivity {
         String url = API_BASE_URL + "/movie/now_playing";
 
         RequestParams params = new RequestParams();
-        params.put(API_KEY_PARAM, getString(R.string.api_key));
+        params.put(API_KEY_PARAM,API_KEY);
         client.get(url,params, new JsonHttpResponseHandler() {
 
             @Override
@@ -88,7 +92,7 @@ public class MovieListActiviity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         String url = API_BASE_URL + "/configuration";
 
-        params.put(API_KEY_PARAM, getString(R.string.api_key));
+        params.put(API_KEY_PARAM, API_KEY);
         client.get(url,params, new JsonHttpResponseHandler(){
 
             @Override

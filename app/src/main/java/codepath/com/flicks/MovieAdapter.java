@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import codepath.com.flicks.models.Config;
 import codepath.com.flicks.models.Movie;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
@@ -37,20 +40,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     {
 
 
-        ImageView ivPosterImage;
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivBackdropImage;
+        @Nullable @BindView(R.id.ivPosterImage) ImageView ivPosterImage;
+         @BindView(R.id.tvTitle) TextView tvTitle;
+        @BindView(R.id.tvOverview) TextView tvOverview;
+        @Nullable @BindView(R.id.ivBackdropImage) ImageView ivBackdropImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
 
-            ivPosterImage = (ImageView) itemView.findViewById(R.id.ivPosterImage);
-            tvTitle = (TextView) itemView.findViewById((R.id.tvTitle));
-            tvOverview= (TextView) itemView.findViewById((R.id.tvOverview));
-            ivBackdropImage = itemView.findViewById(R.id.ivBackdropImage);
             itemView.setOnClickListener(this);
-
         }
         @Override
         public void onClick(View view) {
@@ -103,7 +102,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 .placeholder(placeholderID)
                 .error(placeholderID)
                 .into(imageView);
-
     }
 
     @Override
