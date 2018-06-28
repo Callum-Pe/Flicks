@@ -11,6 +11,12 @@ public class Movie {
     String image_url;
     String backdropPath;
     Double voteAverage;
+    int id;
+
+    public int getId() {
+        return id;
+    }
+
     public Movie() {}
     public Movie(JSONObject o) throws JSONException
     {
@@ -19,7 +25,7 @@ public class Movie {
         image_url = o.getString("poster_path");
         backdropPath = o.getString("backdrop_path");
         voteAverage = o.getDouble("vote_average");
-
+        id = o.getInt("id");
     }
 
     public String getTitle() {

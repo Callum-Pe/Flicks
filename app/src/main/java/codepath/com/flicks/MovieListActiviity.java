@@ -110,7 +110,6 @@ public class MovieListActiviity extends AppCompatActivity {
                 }
 
             }
-
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 logError("failed getting configuration", throwable, false);
