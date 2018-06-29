@@ -23,9 +23,9 @@ The following **optional** features are implemented:
 * [x] Allow video trailers to be played in full-screen using the YouTubePlayerView from the details screen.
 
 The following **additional** features are implemented:
-Removed title bar.
-Movies load video url on instantiation, which eliminates redundant videoid calls.
-Embedded youtube player in description screen.
+*[x] Removed title bar.
+*[x] Movies load video url on instantiation, which eliminates redundant videoid calls.
+*[x] Embedded youtube player in description screen.
 
 * [ ] List anything else that you can get done to improve the app functionality!
 
