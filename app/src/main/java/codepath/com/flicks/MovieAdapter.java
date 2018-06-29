@@ -41,14 +41,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
 
         @Nullable @BindView(R.id.ivPosterImage) ImageView ivPosterImage;
-         @BindView(R.id.tvTitle) TextView tvTitle;
+        @BindView(R.id.tvTitle) TextView tvTitle;
         @BindView(R.id.tvOverview) TextView tvOverview;
         @Nullable @BindView(R.id.ivBackdropImage) ImageView ivBackdropImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
             itemView.setOnClickListener(this);
         }
         @Override
@@ -77,14 +76,29 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         View movieView = li.inflate(R.layout.item_movie, viewGroup, false);
         return new ViewHolder(movieView);
     }
-
+    public String abridge(String s, int length)
+    {
+        if(s.length() < length)
+            return s;
+        for(int i = length; i < s.length();i++)
+            if(s.charAt(i) == ' ')
+                return s.substring(0,i)+" ...";
+        for(int i = s.length()-1;i>=0;i--)
+            if(s.charAt(i) == ' ')
+                return s.substring(0,i)+" ...";
+        return " ";
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Movie movie = movieList.get(i);
-        viewHolder.tvOverview.setText(movie.getOverview());
         viewHolder.tvTitle.setText(movie.getTitle());
 
         boolean portrait = con.getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT;
+        if(portrait)
+            viewHolder.tvOverview.setText(abridge(movie.getOverview(),250));
+        else
+            viewHolder.tvOverview.setText(abridge(movie.getOverview(),300));
+
         String imageUrl;
         if(portrait)
         {

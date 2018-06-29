@@ -88,14 +88,21 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 super.onSuccess(statusCode, headers, response);
                 try {
                     JSONArray array = response.getJSONArray("results");
-                    JSONObject o = array.getJSONObject(0);
                     String videoid = null;
-                    videoid = o.getString("key");
+
+                    for(int i  = 0; i < array.length();i++)
+                    {
+                        JSONObject o = array.getJSONObject(0);
+                        if(o.getString("site").equals("YouTube"))
+                        {
+                            videoid = o.getString("key");
+                            break;
+                        }
+                    }
                     if(videoid != null)
                     {
                         Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                         intent.putExtra("id",videoid);
-
                         startActivity(intent);
                     }
                     Log.i(TAG,"here's the key :" + videoid);
