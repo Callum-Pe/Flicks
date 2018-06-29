@@ -58,7 +58,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 // get the movie at the position, this won't work if the class is static
                 Movie movie = movieList.get(position);
                 // create intent for the new activity
-                Intent intent = new Intent(con, MovieDetailsActivity.class);
+                Intent intent = new Intent(con, BonusActivity.class);
                 // serialize the movie using parceler, use its short name as a key
                 intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
                 // show the activity
