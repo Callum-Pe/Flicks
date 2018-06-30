@@ -117,6 +117,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 .placeholder(placeholderID)
                 .error(placeholderID)
                 .into(imageView);
+
     }
 
     @Override
